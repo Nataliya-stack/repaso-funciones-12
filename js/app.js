@@ -39,4 +39,7 @@ btnCalcularEdad.addEventListener("click", () => {
     const resultadoTexto = calcularAnos(fechaObjeto);
 
     resultadoEdad.textContent = resultadoTexto;
+
+    inputFecha.value = "";
+    inputFecha.focus();
 });

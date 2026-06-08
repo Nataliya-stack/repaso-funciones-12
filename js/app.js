@@ -3,22 +3,26 @@ const btnCalcularEdad = document.getElementById("btn");
 const resultadoEdad = document.getElementById("resultado");
 
 const calcularAnos = (fechaPasada) => {
+    let resultado = ""; // Создаём одну переменную для вывода в самом начале
+
     if (!(fechaPasada instanceof Date) || isNaN(fechaPasada)) {
-        return "Por favor, ingrese una fecha válida.";
+        resultado = "Por favor, ingrese una fecha válida.";
+    } else {
+        const hoy = new Date();
+       
+        let anos = hoy.getFullYear() - fechaPasada.getFullYear();
+       
+        const diferenciaMeses = hoy.getMonth() - fechaPasada.getMonth();
+        const diferenciaDias = hoy.getDate() - fechaPasada.getDate();
+     
+        if (diferenciaMeses < 0 || (diferenciaMeses === 0 && diferenciaDias < 0)) {
+            anos--; 
+        }
+
+        resultado = `${anos} años`;
     }
 
-    const hoy = new Date();
-   
-    let anos = hoy.getFullYear() - fechaPasada.getFullYear();
-   
-    const diferenciaMeses = hoy.getMonth() - fechaPasada.getMonth();
-    const diferenciaDias = hoy.getDate() - fechaPasada.getDate();
- 
-    if (diferenciaMeses < 0 || (diferenciaMeses === 0 && diferenciaDias < 0)) {
-        anos--; 
-    }
-
-    return `${anos} años`;
+    return resultado; 
 };
 
 btnCalcularEdad.addEventListener("click", () => {
